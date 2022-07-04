@@ -104,7 +104,9 @@ class CosS3Auth(AuthBase):
         # reserved keywords in headers urlencode are -_.~, notice that / should be encoded and space should not be encoded to plus sign(+)
         headers = dict([(quote(to_bytes(to_str(k)), '-_.~').lower(), quote(to_bytes(to_str(v)), '-_.~')) for k, v in
                         headers.items()])  # headers中的key转换为小写，value进行encode
-        uri_params = dict([(quote(to_bytes(to_str(k)), '-_.~').lower(), quote(to_bytes(to_str(v)), '-_.~')) for k, v in
+        # uri_params = dict([(quote(to_bytes(to_str(k)), '-_.~').lower(), quote(to_bytes(to_str(v)), '-_.~')) for k, v in
+        #                    uri_params.items()])
+        uri_params = dict([(quote(to_bytes(to_str(k)), '-_.~').lower(), quote(to_bytes(to_str(v)), '-_.~').replace('%2F', '%2f')) for k, v in
                            uri_params.items()])
         format_str = u"{method}\n{host}\n{params}\n{headers}\n".format(
             method=r.method.lower(),
