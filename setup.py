@@ -32,7 +32,7 @@ def long_description():
 
 
 setup(
-    name='cos-python-sdk-v5',
+    name='ultron-cos-python-sdk-v5',
     version='1.9.21',
     url='https://www.qcloud.com/',
     license='MIT',
